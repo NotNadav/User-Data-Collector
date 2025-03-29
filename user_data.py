@@ -9,19 +9,6 @@ username = getpass.getuser()
 hostname = socket.gethostname()
 ip_address = socket.gethostbyname(hostname)
 
-# Gather billing information from the registry
-try:
-    key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\WindowsStore")
-    billing_name, billing_type = winreg.QueryValueEx(key, "BillingName")
-    billing_address, billing_type = winreg.QueryValueEx(key, "BillingAddress")
-    billing_email, billing_type = winreg.QueryValueEx(key, "BillingEmail")
-    billing_phone, billing_type = winreg.QueryValueEx(key, "BillingPhone")
-except WindowsError:
-    billing_name = None
-    billing_address = None
-    billing_email = None
-    billing_phone = None
-
 # Gather data into a dictionary
 data = {
     "username": username,
